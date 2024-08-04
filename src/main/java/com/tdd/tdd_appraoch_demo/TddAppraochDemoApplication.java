@@ -8,6 +8,7 @@ public class TddAppraochDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TddAppraochDemoApplication.class, args);
+		System.out.println("Test\n Driven\n Development");
 	}
 
 }
