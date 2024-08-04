@@ -1,5 +1,6 @@
 package com.tdd.tdd_appraoch_demo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -53,8 +54,30 @@ public class PostControllerTest2 {
                                              .andExpect(status().isOk())
                                              .andExpect(content().json(jsonResponse));
         
-//		JSONAssert.assertEquals(jsonResponse, andExpect.andReturn().getResponse().getContentAsString(),false);
+		JSONAssert.assertEquals(jsonResponse, resultActions.andReturn().getResponse().getContentAsString(),false);
 
     }
+    
+    @Test
+	public void getByIdTest() {
+		String jsonRsponse = """
+					{
+						"pId":1,
+						"userId":1,
+						"pTitle":"Post-1",
+						"pBody":"First Post",
+						"pBody":"Second Post"
+					}
+				""";
+		when(postService.findById(1)).thenReturn(new Post(1,1,"Post-1","First Post"));
+		
+		try {
+			ResultActions resultActions = mockMvc.perform(get("/api/tdd/findById/1")).andExpect(status().isOk()).andExpect(content().json(jsonRsponse));
+			assertEquals(jsonRsponse,resultActions.andReturn().getResponse());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 
