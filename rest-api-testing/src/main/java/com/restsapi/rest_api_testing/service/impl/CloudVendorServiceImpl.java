@@ -21,14 +21,14 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     public String createCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
-        return "Success";
+        return "cloudVendor successfully created,";
     }
 
     @Override
     public String updateCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
-        return "Success";
+        return "cloudVendor successfully updated,";
     }
 
     @Override
