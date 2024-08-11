@@ -21,14 +21,14 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     public String createCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
-        return "Success";
+        return "cloudVendor successfully created,";
     }
 
     @Override
     public String updateCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
-        return "Success";
+        return "cloudVendor successfully updated,";
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     @Override
     public CloudVendor getCloudVendor(String cloudVendorId) {
         // More Business Logic
-        if(cloudVendorRepository.findById(cloudVendorId).isEmpty())
+        if (cloudVendorRepository.findById(cloudVendorId).isEmpty())
             throw new CloudVendorNotFoundException("Requested Cloud Vendor does not exist");
         return cloudVendorRepository.findById(cloudVendorId).get();
     }
@@ -53,8 +53,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
-    public List<CloudVendor> getByVendorName(String vendorName)
-    {
+    public List<CloudVendor> getByVendorName(String vendorName) {
         return cloudVendorRepository.findByVendorName(vendorName);
     }
 }
