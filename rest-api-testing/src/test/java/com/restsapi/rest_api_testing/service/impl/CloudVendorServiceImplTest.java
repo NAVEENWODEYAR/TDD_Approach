@@ -90,6 +90,6 @@ class CloudVendorServiceImplTest {
         mock(CloudVendorRepository.class);
 
         when(cloudVendorRepository.findByVendorName("GCP")).thenReturn(new ArrayList<>(Collections.singletonList(cloudVendor)));
-        assertThat(cloudVendorService.getByVendorName("GCP").get(0).getVendorId()).isEqualTo(cloudVendor.getVendorName());
+        assertThat(cloudVendorService.getByVendorName("GCP").get(0).getVendorName()).isEqualTo(cloudVendor.getVendorName());
     }
 }
