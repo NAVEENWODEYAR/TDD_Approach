@@ -1,5 +1,8 @@
 package com.restsapi.rest_api_testing.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.restsapi.rest_api_testing.entity.CloudVendor;
 import com.restsapi.rest_api_testing.service.CloudVendorService;
 import lombok.SneakyThrows;
@@ -14,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -69,12 +71,17 @@ class CloudVendorControllerTest {
     }
 
     @Test
-    void createCloudVendorDetails() {
+    void createCloudVendorDetails() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+                    objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE,false);
+        ObjectWriter objectWriter = objectMapper.writer().withDefaultPrettyPrinter();
+        String requestJson = objectWriter.writeValueAsString(cloudVendorOne);
+
         when(cloudVendorService.createCloudVendor(cloudVendorOne))
                 .thenReturn("Success");
         this.mockMvc.perform(post("/api/cloud/add")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content())
+                .content(requestJson))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -83,7 +90,20 @@ class CloudVendorControllerTest {
     }
 
     @Test
-    void updateCloudVendorDetails() {
+    void updateCloudVendorDetails() throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE,false);
+        ObjectWriter objectWriter = objectMapper.writer().withDefaultPrettyPrinter();
+        String requestJson = objectWriter.writeValueAsString(cloudVendorOne);
+
+
+        when(cloudVendorService.updateCloudVendor(cloudVendorOne))
+                .thenReturn("Success");
+
+        this.mockMvc.perform(put("/api/cloud/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson))
+                .andDo(print()).andExpect(status().isOk());
     }
 
     @SneakyThrows
