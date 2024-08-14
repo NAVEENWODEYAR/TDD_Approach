@@ -61,7 +61,7 @@ class MovieServiceTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeEach
+//	@BeforeEach
 	void setUp() throws Exception {
 		movie = new Movie();
 		movie.setMName("VIP");
@@ -129,21 +129,50 @@ class MovieServiceTest {
 	@DisplayName("/findByName")
 	public void getByMovieId() {
 		Movie movie = new Movie();
-		movie.setMName("VIP");
-		movie.setMgenre("Sentiment");
-		movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setMName("VIP");
+			movie.setMgenre("Sentiment");
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		when(movieRepository.findById(anyLong())).thenReturn(Optional.of(movie));
 		
 		Movie byMovieId = movieService.getByMovieId(1L);
-		assertNotNull(byMovieId);
-		assertThat(byMovieId.getMId()).isEqualTo(1);
+		assertThat(byMovieId.getMName()).isEqualTo("VIP");
 
 	}
 	
-	public void updateMovie() {
+	@Test
+	@DisplayName("/findByIdWithException,")
+	public void getMoviebyIdException() {
+		Movie movie = new Movie();
+			movie.setMId(1L);
+			movie.setMName("VIP");
+			movie.setMgenre("Sentiment");
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			
+		when(movieRepository.findById(1L)).thenReturn(Optional.of(movie));
 		
-				
+		assertThrows(RuntimeException.class, ()->{
+			movieService.getByMovieId(2L);
+		});
+			
+	}
+	
+	@Test
+	@DisplayName("/Update method,")
+	public void updateMovie() {
+		Movie movie = new Movie();
+			movie.setMName("VIP");
+			movie.setMId(2L);
+			movie.setMgenre("Sentiment");
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		
+		when(movieRepository.findById(2L)).thenReturn(Optional.of(movie));
+		when(movieRepository.save(any(Movie.class))).thenReturn(movie);
+			movie.setMgenre("Dramedy");
+			
+			Movie updateMovie = movieService.updateMovie(movie, 2L);
+		assertNotNull(updateMovie);
+		assertEquals("Dramedy", updateMovie.getMgenre());
 	}
 	
 	public void deleteMovie() {

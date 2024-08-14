@@ -27,7 +27,8 @@ public class MovieService {
 	}
 	
 	public Movie getByMovieId(Long movieId) {
-		return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
+		return movieRepository.findById(movieId).get();
+//		return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
 	}
 	
 	public Movie updateMovie(Movie movie,Long movieId) {
