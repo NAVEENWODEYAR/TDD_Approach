@@ -33,8 +33,8 @@ public class MovieService {
 	
 	public Movie updateMovie(Movie movie,Long movieId) {
 		Movie movie2 = movieRepository.findById(movieId).get();
-				movie2.setMName("Updated_Movie");
-				movie2.setMgenre("Updated_Genre");
+				movie2.setMName(movie.getMName());
+				movie2.setMgenre(movie.getMgenre());
 				
 				return movieRepository.save(movie2);
 	}

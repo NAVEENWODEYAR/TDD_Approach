@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -169,14 +172,29 @@ class MovieServiceTest {
 		when(movieRepository.findById(2L)).thenReturn(Optional.of(movie));
 		when(movieRepository.save(any(Movie.class))).thenReturn(movie);
 			movie.setMgenre("Dramedy");
+			movie.setMName("VIP2");
 			
 			Movie updateMovie = movieService.updateMovie(movie, 2L);
 		assertNotNull(updateMovie);
 		assertEquals("Dramedy", updateMovie.getMgenre());
+		assertEquals(updateMovie.getMName(),"VIP2");
 	}
 	
+	@Test
+	@DisplayName("delteById")
 	public void deleteMovie() {
+		Movie movie = new Movie();
+			movie.setMName("VIP");
+			movie.setMId(2L);
+			movie.setMgenre("Sentiment");
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			
+		when(movieRepository.findById(anyLong())).thenReturn(Optional.of(movie));
+		System.out.println(movie.getMId()+"\n"+movie.getMName());
+		doNothing().when(movieRepository).delete(any(Movie.class));
 		
+		movieService.deleteMovie(2L);
+		verify(movieRepository,times(1)).delete(movie);;
 	}
 
 }
