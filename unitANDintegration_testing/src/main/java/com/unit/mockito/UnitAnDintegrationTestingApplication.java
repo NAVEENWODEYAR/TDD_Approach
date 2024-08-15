@@ -5,11 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.*;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 @OpenAPIDefinition(
 	    info = @Info(
 	        title = "DEPARTMENT-SERVICE API",
@@ -50,7 +52,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 	    tags = {
 	        @Tag(name = "Department", description = "Operations related to departments"),
 	        @Tag(name = "Employee", description = "Operations related to employees")
-	    }
+	    },
+	    security = @SecurityRequirement(name = "bearerAuth")  // Apply security globally to all endpoints
+	)
+	@SecurityScheme(
+	    name = "bearerAuth",  // Reference name
+	    type = SecuritySchemeType.HTTP,  // HTTP type
+	    scheme = "bearer",  // Bearer token
+	    bearerFormat = "JWT"  // Optional format for JWT
 	)
 @SpringBootApplication
 public class UnitAnDintegrationTestingApplication {
