@@ -12,25 +12,29 @@ import com.unit.mockito.service.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.websocket.server.PathParam;
+import lombok.extern.slf4j.Slf4j;
 /**
  * @author Naveen K Wodeyaar,
  * @Date 15-Aug-2024
  */
 @Tag(name = "Movie_Service_Controller", description = "Operations related to movie,")
-@RestController("/api/v1/moviecontroller")
+@Slf4j
+@RestController("/api/v1")
 public class MovieServiceController {
 
 	@Autowired
 	private MovieService movieService;
 	
-	@GetMapping
+	@GetMapping("/test")
 	@ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Test endPoint,", description = "Returns the string message.")
 	public ResponseEntity<?> test(){
+		log.warn("TEST ENDPOINT,,");
 		return  ResponseEntity.ok("Welcome to the Movie_Controller!,");
 	}
 	
 	@PostMapping("/add")
+	@ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Add new movie", description = "Add a new movie to the system.")
     public ResponseEntity<Object> addMovie(@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.addMovie(request));
@@ -44,8 +48,8 @@ public class MovieServiceController {
 	
 	@GetMapping("/list")
     @Operation(summary = "Find movies list", description = "Fetches the available movies list,")
-    public ResponseEntity<Object> getMovies(@PathParam("id") Long id) {
-        return ResponseEntity.ok(movieService.getByMovieId(id));
+    public ResponseEntity<Object> getMovies() {
+        return ResponseEntity.ok(movieService.movieList());
     }
 	
 	@PutMapping("/update/{id}")
