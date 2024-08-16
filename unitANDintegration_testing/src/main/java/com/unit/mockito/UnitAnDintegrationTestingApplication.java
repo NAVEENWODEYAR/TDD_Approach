@@ -14,14 +14,14 @@ import io.swagger.v3.oas.annotations.servers.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 @OpenAPIDefinition(
 	    info = @Info(
-	        title = "DEPARTMENT-SERVICE API",
+	        title = "JUNIT_UNIT,,MOCKITO",
 	        version = "1.0",
-	        description = "Microservice-1 for Employee Management System, handling department-related operations.",
+	        description = "Unit testing using Mockito,",
 	        termsOfService = "http://terms.example.com",
 	        contact = @Contact(
-	            name = "Support Team",
-	            email = "support@example.com",
-	            url = "http://support.example.com"
+	            name = "naveen k wodeyar",
+	            email = "naveen.wodeyar@yahoo.com",
+	            url = "http://naveenwodeyar.com"
 	        ),
 	        license = @License(
 	            name = "Apache 2.0",
@@ -31,7 +31,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 	    servers = {
 	        @Server(
 	            url = "http://localhost:7070",
-	            description = "Development server",
+	            description = "Testing server",
 	            variables = {
 	                @ServerVariable(
 	                    name = "port",
@@ -50,16 +50,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 	        url = "http://example.com/docs"
 	    ),
 	    tags = {
-	        @Tag(name = "Department", description = "Operations related to departments"),
-	        @Tag(name = "Employee", description = "Operations related to employees")
-	    },
-	    security = @SecurityRequirement(name = "bearerAuth")  // Apply security globally to all endpoints
-	)
-	@SecurityScheme(
-	    name = "bearerAuth",  // Reference name
-	    type = SecuritySchemeType.HTTP,  // HTTP type
-	    scheme = "bearer",  // Bearer token
-	    bearerFormat = "JWT"  // Optional format for JWT
+	        @Tag(name = "Movie_Service", description = "Testing related to Movie_Service"),
+	        @Tag(name = "Employee", description = "Operations related to employees")}
+//	    },
+//	    security = @SecurityRequirement(name = "bearerAuth")  // Apply security globally to all endpoints
+//	)
+//	@SecurityScheme(
+//	    name = "bearerAuth",  // Reference name
+//	    type = SecuritySchemeType.HTTP,  // HTTP type
+//	    scheme = "bearer",  // Bearer token
+//	    bearerFormat = "JWT"  // Optional format for JWT
 	)
 @SpringBootApplication
 public class UnitAnDintegrationTestingApplication {
