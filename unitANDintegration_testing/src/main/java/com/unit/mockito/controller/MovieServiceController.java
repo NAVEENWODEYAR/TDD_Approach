@@ -19,7 +19,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Tag(name = "Movie_Service_Controller", description = "Operations related to movie,")
 @Slf4j
-@RestController("/api/v1")
+@RestController
+@RequestMapping("/api/v1")
 public class MovieServiceController {
 
 	@Autowired
@@ -42,7 +43,7 @@ public class MovieServiceController {
 	
 	@GetMapping("/getById/{id}")
     @Operation(summary = "Find by movie-Id", description = "Fetches the movie by the provided movie-id,")
-    public ResponseEntity<Object> getMovieById(@PathParam("id") Long id) {
+    public ResponseEntity<Object> getMovieById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(movieService.getByMovieId(id));
     }
 	
@@ -54,13 +55,13 @@ public class MovieServiceController {
 	
 	@PutMapping("/update/{id}")
     @Operation(summary = "Update movie", description = "Updates the movie by its id,")
-    public ResponseEntity<Object> updateMovie(@PathParam("id") Long id,@RequestBody Movie request) {
+    public ResponseEntity<Object> updateMovie(@PathVariable("id") Long id,@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.updateMovie(request, id));
     }
 	
 	@DeleteMapping("/delete/{id}")
     @Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
-    public ResponseEntity<Object> delteMovie(@PathParam("id") Long id) {
+    public ResponseEntity<Object> delteMovie(@PathVariable("id") Long id) {
         return ResponseEntity.ok(movieService.deleteMovie(id));
     }
 	
