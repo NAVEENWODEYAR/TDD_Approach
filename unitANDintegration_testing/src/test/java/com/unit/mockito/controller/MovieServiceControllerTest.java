@@ -10,6 +10,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -100,12 +102,20 @@ class MovieServiceControllerTest{
 			
 		when(movieService.addMovie(any(Movie.class))).thenReturn(movie);
 		
-		this.mockMvc.perform(post("/api/v1/moviecontroller/add")
+		String jsonResponse = this.mockMvc.perform(post("/api/v1/add")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(movie)))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+		System.out.println("Response: " + jsonResponse);
+		
+		this.mockMvc.perform(post("/api/v1/add")
 								.contentType(MediaType.APPLICATION_JSON)
 								.content(mapper.writeValueAsString(movie)))
-								.andExpect(status().isCreated())
-								.andExpect(jsonPath("$.mName", is(movie.getMName())))
-								.andExpectAll(jsonPath("$.mGenre", is(movie.getMgenre())));
+								.andExpect(status().isOk())
+								.andExpect(jsonPath("$.mname", is(movie.getMName())))
+								.andExpectAll(jsonPath("$.mgenre", is(movie.getMgenre())));
 	}
 
 	/**
@@ -118,10 +128,31 @@ class MovieServiceControllerTest{
 
 	/**
 	 * Test method for {@link com.unit.mockito.controller.MovieServiceController#getMovies(java.lang.Long)}.
+	 * @throws Exception 
 	 */
 	@Test
-	void testGetMovies() {
-		fail("Not yet implemented");
+	@DisplayName("Display movies list")
+	void testGetMovies() throws Exception {
+		Movie movie = new Movie();
+			movie.setMName("VIP");
+			movie.setMgenre("Sentiment");
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		
+		Movie movie1 = new Movie();
+			movie1.setMName("VIP2");
+			movie1.setMgenre("COMEDY");
+			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
+			
+		List<Movie> movieList = new ArrayList<>();
+					movieList.add(movie);	
+					movieList.add(movie1);	
+					
+		when(movieService.movieList()).thenReturn(movieList);
+		
+		this.mockMvc.perform(get("/api/v1/list"))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$.size()", is(movieList.size())));
+
 	}
 
 	/**
