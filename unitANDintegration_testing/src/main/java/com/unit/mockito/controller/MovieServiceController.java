@@ -48,6 +48,7 @@ public class MovieServiceController {
     }
 	
 	@GetMapping("/list")
+	@ResponseStatus(code = HttpStatus.FOUND)
     @Operation(summary = "Find movies list", description = "Fetches the available movies list,")
     public ResponseEntity<Object> getMovies() {
         return ResponseEntity.ok(movieService.movieList());
