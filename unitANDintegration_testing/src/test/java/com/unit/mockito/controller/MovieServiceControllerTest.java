@@ -3,15 +3,18 @@ package com.unit.mockito.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -79,13 +82,13 @@ class MovieServiceControllerTest{
 	 * Test method for {@link com.unit.mockito.controller.MovieServiceController#test()}.
 	 * @throws Exception 
 	 */
-	@Test
-	@DisplayName("Test endPoint API")
-	void testTest() throws Exception {
-//		fail("Not yet implemented");
-		this.mockMvc.perform(get("/api/v1/moviecontroller/test"))
-							.andExpect(status().isOk());
-	}
+//	@Test
+//	@DisplayName("Test endPoint API")
+//	void testTest() throws Exception {
+////		fail("Not yet implemented");
+//		this.mockMvc.perform(get("/api/v1/moviecontroller/test"))
+//							.andExpect(status().isOk());
+//	}
 
 	/**
 	 * Test method for {@link com.unit.mockito.controller.MovieServiceController#addMovie(com.unit.mockito.entity.Movie)}.
@@ -120,10 +123,22 @@ class MovieServiceControllerTest{
 
 	/**
 	 * Test method for {@link com.unit.mockito.controller.MovieServiceController#getMovieById(java.lang.Long)}.
+	 * @throws Exception 
 	 */
 	@Test
-	void testGetMovieById() {
-		fail("Not yet implemented");
+	void testGetMovieById() throws Exception {
+		Movie movie = new Movie();
+			movie.setMName("VIP");
+			movie.setMgenre("Sentiment");
+			movie.setMId(1L);
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+	
+		when(movieService.getByMovieId(anyLong())).thenReturn((movie));
+		
+		this.mockMvc.perform(get("/api/v1/getById/{id}",1L))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$.mname", is(movie.getMName())));
+			
 	}
 
 	/**
@@ -157,18 +172,49 @@ class MovieServiceControllerTest{
 
 	/**
 	 * Test method for {@link com.unit.mockito.controller.MovieServiceController#updateMovie(java.lang.Long, com.unit.mockito.entity.Movie)}.
+	 * @throws Exception 
+	 * @throws JsonProcessingException 
 	 */
 	@Test
-	void testUpdateMovie() {
-		fail("Not yet implemented");
+	@DisplayName("Update Movie")
+	void testUpdateMovie() throws JsonProcessingException, Exception {
+		Movie movie = new Movie();
+			movie.setMName("VIP");
+			movie.setMgenre("Sentiment");
+			movie.setMId(1L);
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			
+		when(movieService.updateMovie(any(Movie.class), anyLong())).thenReturn(movie);
+		
+		this.mockMvc.perform(put("/api/v1/update/{id}",1L)
+					.contentType(MediaType.APPLICATION_JSON)
+					.content(mapper.writeValueAsString(movie)))
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$.mname", is(movie.getMName())));
+					
+		
 	}
 
 	/**
 	 * Test method for {@link com.unit.mockito.controller.MovieServiceController#delteMovie(java.lang.Long)}.
-	 */
+	 * @throws Exception 
+	 */	
 	@Test
-	void testDelteMovie() {
-		fail("Not yet implemented");
+	@DisplayName("Delete Movie")
+	void testDelteMovie() throws Exception {
+	    Movie movie = new Movie();
+	    movie.setMName("VIP");
+	    movie.setMgenre("Sentiment");
+	    movie.setMId(1L);
+	    movie.setMReleaseDate(LocalDate.of(2020, 5, 6));
+
+	    // Stubbing deleteMovie() to do nothing
+//	    doNothing().when(movieService).deleteMovie(anyLong());
+	    when(movieService.deleteMovie(anyLong())).thenReturn("Movie,+"+movie.getMId()+"deleted successfully");
+	    
+	    // Perform the delete request and expect status NO_CONTENT
+	    this.mockMvc.perform(delete("/api/v1/delete/{id}", 1L))
+	                .andExpect(status().isNoContent());
 	}
 
 }

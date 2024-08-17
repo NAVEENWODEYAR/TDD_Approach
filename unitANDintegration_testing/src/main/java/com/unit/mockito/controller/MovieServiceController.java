@@ -42,6 +42,7 @@ public class MovieServiceController {
     }
 	
 	@GetMapping("/getById/{id}")
+	@ResponseStatus(code = HttpStatus.FOUND)
     @Operation(summary = "Find by movie-Id", description = "Fetches the movie by the provided movie-id,")
     public ResponseEntity<Object> getMovieById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(movieService.getByMovieId(id));
@@ -55,15 +56,24 @@ public class MovieServiceController {
     }
 	
 	@PutMapping("/update/{id}")
+//	@ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Update movie", description = "Updates the movie by its id,")
     public ResponseEntity<Object> updateMovie(@PathVariable("id") Long id,@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.updateMovie(request, id));
     }
 	
-	@DeleteMapping("/delete/{id}")
-    @Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
-    public ResponseEntity<Object> delteMovie(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(movieService.deleteMovie(id));
-    }
+//	@DeleteMapping("/delete/{id}")
+//	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+//    @Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
+//    public ResponseEntity<Object> delteMovie(@PathVariable("id") Long id) {
+//        return ResponseEntity.ok(movieService.deleteMovie(id));
+//    }
 	
+	@DeleteMapping("/delete/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
+	public ResponseEntity<Void> deleteMovie(@PathVariable("id") Long id) {
+	    movieService.deleteMovie(id);  // Assuming the method returns void
+	    return ResponseEntity.noContent().build();  // Return NO_CONTENT status
+	}
 }
