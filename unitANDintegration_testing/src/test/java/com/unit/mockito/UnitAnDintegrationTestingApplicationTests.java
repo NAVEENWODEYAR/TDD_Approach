@@ -5,14 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -37,6 +32,10 @@ class UnitAnDintegrationTestingApplicationTests {
 	@Autowired
 	private MovieRepository movieRepository;
 	
+	private Movie movie;
+	
+	private Movie movie1;
+	
 	@BeforeAll
 	public static void initialize() {
 		restTemplate = new RestTemplate();
@@ -46,7 +45,18 @@ class UnitAnDintegrationTestingApplicationTests {
 	public void beforeSetp() {
 		baseUrl = baseUrl+":"+port+"/api/v1";
 		
-
+		Movie movie = new Movie();
+			movie.setMName("VIP");
+			movie.setMgenre("Sentiment");
+			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		
+		Movie movie1 = new Movie();
+			movie1.setMName("VIP2");
+			movie1.setMgenre("COMEDY");
+			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
+			
+			movie = movieRepository.save(movie);
+			movie1 = movieRepository.save(movie1);
 	}
 	
 	@AfterEach
@@ -90,18 +100,8 @@ class UnitAnDintegrationTestingApplicationTests {
 	@Test
 	@DisplayName("Get Movie Test")
 	void shouldGetMovieTest() {
+
 		Movie movie = new Movie();
-			movie.setMName("VIP");
-			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
-			
-		Movie movie1 = new Movie();
-			movie1.setMName("VIP2");
-			movie1.setMgenre("COMEDY");
-			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
-			
-		movie = restTemplate.postForObject(baseUrl+"/add", movie, Movie.class);
-		movie1 = restTemplate.postForObject(baseUrl+"/add", movie1, Movie.class);
 
 		Movie existinMovie = restTemplate.getForObject(baseUrl+"/getById/"+movie.getMId(), Movie.class);
 	
@@ -113,20 +113,10 @@ class UnitAnDintegrationTestingApplicationTests {
 	@Test
 	@DisplayName("Delete Movie Test")
 	void shouldDeleteMovieTest() {
-		Movie movie = new Movie();
-			movie.setMName("VIP");
-			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
-			
-		Movie movie1 = new Movie();
-			movie1.setMName("VIP2");
-			movie1.setMgenre("COMEDY");
-			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
-			
-		movie = restTemplate.postForObject(baseUrl+"/add", movie, Movie.class);
-		movie1 = restTemplate.postForObject(baseUrl+"/add", movie1, Movie.class);
 
-		restTemplate.delete(baseUrl+"/delete/"+movie.getMId());
+		Movie movie = new Movie();
+
+		restTemplate.delete(baseUrl+"/delete/"+1L);
 		
 		int size = movieRepository.findAll().size();
 		
@@ -138,19 +128,9 @@ class UnitAnDintegrationTestingApplicationTests {
 	@DisplayName("Update Movie Test")
 	void shouldUpdateMovieTest() {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
-			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
-			
-		Movie movie1 = new Movie();
-			movie1.setMName("VIP2");
-			movie1.setMgenre("COMEDY");
-			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
-			
-		movie = restTemplate.postForObject(baseUrl+"/add", movie, Movie.class);
-		movie1 = restTemplate.postForObject(baseUrl+"/add", movie1, Movie.class);
-			
+		
 			movie.setMgenre("DRAMEDY");
+			
 		restTemplate.put(baseUrl+"/update/"+movie.getMId(), movie);
 		
 		Movie existingMovie = restTemplate.getForObject(baseUrl+"/getById/"+movie.getMId(), Movie.class);

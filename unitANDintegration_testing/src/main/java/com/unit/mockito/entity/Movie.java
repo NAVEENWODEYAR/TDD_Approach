@@ -19,7 +19,7 @@ import lombok.*;
 public class Movie {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long mId;
 	
 	private String mName;
