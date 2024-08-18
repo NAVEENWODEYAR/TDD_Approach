@@ -2,7 +2,13 @@ package com.unit.mockito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.unit.mockito.config.SwaggerConfig;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -62,6 +68,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 //	    scheme = "bearer",  // Bearer token
 //	    bearerFormat = "JWT"  // Optional format for JWT
 //	)
+@ComponentScan(excludeFilters = {
+	    @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = SwaggerConfig.class)
+	})
 @EnableWebMvc
 @SpringBootApplication
 public class UnitAnDintegrationTestingApplication {
@@ -69,6 +78,11 @@ public class UnitAnDintegrationTestingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UnitAnDintegrationTestingApplication.class, args);
 		System.out.println("\nUnit Testing,\nIntegration Testing,\nMockito,,");
+	}
+	
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 
 }
