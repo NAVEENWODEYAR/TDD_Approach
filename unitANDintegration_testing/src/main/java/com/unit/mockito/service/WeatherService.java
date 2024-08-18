@@ -1,13 +1,21 @@
 package com.unit.mockito.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.unit.mockito.entity.WeatherResponse;
+import com.unit.mockito.repo.response.WeatherResponses;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Naveen K Wodeyaar,
  * @Date 18-Aug-2024
  */
+@Slf4j
 @Service
 public class WeatherService {
 
@@ -18,9 +26,13 @@ public class WeatherService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	public String getWeaher(String city) {
-		String finalUrl = API.replace("CITY", city).replace("API_KEY", apiKey) ;
-		
+	public WeatherResponses getWeather(String city) {
+		String finalUrl = API.replace("CITY", city).replace("API_KEY", apiKey);
+		log.debug(finalUrl);
+		log.warn(city);
+		ResponseEntity<WeatherResponses> weatherReport = restTemplate.exchange(finalUrl, HttpMethod.GET,null,WeatherResponses.class);
+		WeatherResponses weatherResponse = weatherReport.getBody();
+		return weatherResponse;
 		
 	}
 }
