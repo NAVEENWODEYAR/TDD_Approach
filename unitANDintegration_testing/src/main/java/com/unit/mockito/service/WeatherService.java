@@ -26,12 +26,12 @@ public class WeatherService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	public WeatherResponses getWeather(String city) {
+	public Object getWeather(String city) {
 		String finalUrl = API.replace("CITY", city).replace("API_KEY", apiKey);
 		log.debug(finalUrl);
 		log.warn(city);
-		ResponseEntity<WeatherResponses> weatherReport = restTemplate.exchange(finalUrl, HttpMethod.GET,null,WeatherResponses.class);
-		WeatherResponses weatherResponse = weatherReport.getBody();
+		ResponseEntity<Object> weatherReport = restTemplate.exchange(finalUrl, HttpMethod.GET,null,Object.class);
+		Object weatherResponse = weatherReport.getBody();
 		return weatherResponse;
 		
 	}
