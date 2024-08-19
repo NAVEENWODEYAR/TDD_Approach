@@ -30,7 +30,11 @@ public class MovieServiceController {
 	@ResponseStatus(code = HttpStatus.OK)
     @Operation(summary = "Test endPoint,", description = "Returns the string message.")
 	public ResponseEntity<?> test(){
-		log.warn("TEST ENDPOINT,,");
+		log.trace("TRACE");
+		log.debug("DEBUG,");
+		log.info("INFO,");
+		log.warn("WARN,");
+		log.error("ERROR,");
 		return  ResponseEntity.ok("Welcome to the Movie_Controller!,");
 	}
 	

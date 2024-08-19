@@ -33,6 +33,6 @@ public class WeatherService {
 		ResponseEntity<Object> weatherReport = restTemplate.exchange(finalUrl, HttpMethod.GET,null,Object.class);
 		Object weatherResponse = weatherReport.getBody();
 		return weatherResponse;
-		
 	}
+	
 }
