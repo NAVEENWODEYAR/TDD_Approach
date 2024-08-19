@@ -13,12 +13,15 @@ import com.unit.mockito.entity.WeatherResponse;
 import com.unit.mockito.repo.response.WeatherResponses;
 import com.unit.mockito.service.WeatherService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Naveen K Wodeyaar,
  * @Date 18-Aug-2024 
  */
+@Tag(name = "Weather_Controller",description = "Controller to consume the external API to get the weather report,")
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/weather")
@@ -27,6 +30,7 @@ public class WeatherController {
 	@Autowired
 	private WeatherService weatherService;
 	
+	@Operation(summary = "Test Endpoint", description = "Displays the welcome message.")
 	@GetMapping("/greet")
 	public ResponseEntity<?> greet() {
 		log.warn("Inside greet(),");
@@ -35,11 +39,12 @@ public class WeatherController {
 							 .body("Welcome to the Weather API!");
 	}
 	
+	@Operation(summary = "Get Weather", description = "Fetch the weather of the provided city.")
 //	@GetMapping(value = "/weather/{location}",params ="city"  ,produces = MediaType.APPLICATION_JSON_VALUE)
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getWeather() {
 		log.error("Inside getWeather() {}");
-		WeatherResponses weatherData = weatherService.getWeather("Bangalore");
+		Object weatherData = weatherService.getWeather("Bangalore");
 		return ResponseEntity.status(HttpStatus.OK)
 							 .header("API_KEY", "Key to access the weatherstack API,")
 							 .body(weatherData);
