@@ -1,15 +1,20 @@
 package com.unit.mockito;
 
+import java.util.Arrays;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.unit.mockito.config.SwaggerConfig;
 
+import ch.qos.logback.core.Context;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -76,7 +81,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class UnitAnDintegrationTestingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UnitAnDintegrationTestingApplication.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(UnitAnDintegrationTestingApplication.class, args);
+		String[] activeProfiles = context.getEnvironment().getActiveProfiles();
+		System.out.println(Arrays.toString(activeProfiles));
 		System.out.println("\nUnit Testing,\nIntegration Testing,\nMockito,,");
 	}
 	
