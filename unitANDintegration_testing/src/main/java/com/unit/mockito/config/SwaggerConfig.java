@@ -15,18 +15,36 @@ import io.swagger.v3.oas.models.info.License;
 @Configuration
 public class SwaggerConfig {
 	
-	@Bean
-	public OpenAPI openAPI() {
-		return new OpenAPI()
-					.info(new Info()
-							.title("Unit_Integration_Testing")
-							.description("Spring Boot Unit Testing and Integration Testing with JUnit,\r\n"
-									+ "		Mockito and MockMvc,")
-							.version("1.0")
-							.description("Testing demo,,")
-							.contact(new Contact().name("Naveen K Wodeyar").url("naveen.co.in").email("naveenwodeyar@yahoo.com"))
-							.license(new License().name("My License").url("www.license.co.in"))
-							);
-	}
+//	@Bean
+//	public OpenAPI openAPI() {
+//		return new OpenAPI()
+//					.info(new Info()
+//							.title("Unit_Integration_Testing")
+//							.description("Spring Boot Unit Testing and Integration Testing with JUnit,\r\n"
+//									+ "		Mockito and MockMvc,")
+//							.version("2.0")
+//							.description("Testing demo,,")
+//							.contact(new Contact().name("Naveen K Wodeyar").url("naveen.co.in").email("naveenwodeyar@yahoo.com"))
+//							.license(new License().name("My License").url("www.license.co.in"))
+//							);
+//	}
+//	
+	 @Bean
+	    public OpenAPI openAPI() {
+	        return new OpenAPI()
+	                    .info(new Info()
+	                            .title("Unit_Integration_Testing")
+	                            .description("Spring Boot Unit Testing and Integration Testing with JUnit, Mockito, and MockMvc.")
+	                            .version("1.0")
+	                            .contact(new Contact()
+	                                    .name("Naveen K Wodeyar")
+	                                    .url("http://naveen.co.in")
+	                                    .email("naveenwodeyar@yahoo.com"))
+	                            .license(new License()
+	                                    .name("My License")
+	                                    .url("http://www.license.co.in"))
+	                            );
+	    }
+
 
 }
