@@ -27,5 +27,72 @@ public class Movie {
 	private String mgenre;
 	
 	private LocalDate mReleaseDate;
+
+	public Movie(Long mId, String mName, String mgenre, LocalDate mReleaseDate) {
+		super();
+		this.mId = mId;
+		this.mName = mName;
+		this.mgenre = mgenre;
+		this.mReleaseDate = mReleaseDate;
+	}
+
+	/**
+	 * @return the mId
+	 */
+	public Long getmId() {
+		return mId;
+	}
+
+	/**
+	 * @param mId the mId to set
+	 */
+	public void setmId(Long mId) {
+		this.mId = mId;
+	}
+
+	/**
+	 * @return the mName
+	 */
+	public String getmName() {
+		return mName;
+	}
+
+	/**
+	 * @param mName the mName to set
+	 */
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	/**
+	 * @return the mgenre
+	 */
+	public String getMgenre() {
+		return mgenre;
+	}
+
+	/**
+	 * @param mgenre the mgenre to set
+	 */
+	public void setMgenre(String mgenre) {
+		this.mgenre = mgenre;
+	}
+
+	/**
+	 * @return the mReleaseDate
+	 */
+	public LocalDate getmReleaseDate() {
+		return mReleaseDate;
+	}
+
+	/**
+	 * @param mReleaseDate the mReleaseDate to set
+	 */
+	public void setmReleaseDate(LocalDate mReleaseDate) {
+		this.mReleaseDate = mReleaseDate;
+	}
+	
+	
+	
 	
 }

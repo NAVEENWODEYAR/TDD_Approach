@@ -1,5 +1,7 @@
 package com.unit.mockito.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class WeatherService {
+	
+	private static final Logger log = LoggerFactory.getLogger(WeatherService.class);
 
 	private String apiKey = "190a443a447df5f4dd0c10d2679a3c34";
 	
