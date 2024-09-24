@@ -8,7 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.unit.mockito.entity.Movie;
 import com.unit.mockito.service.MovieService;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.websocket.server.PathParam;
@@ -28,7 +35,18 @@ public class MovieServiceController {
 	
 	@GetMapping("/test")
 	@ResponseStatus(code = HttpStatus.OK)
-    @Operation(summary = "Test endPoint,", description = "Returns the string message.")
+	@Operation(
+		        summary = "Test endpoint",
+		        description = "Returns a string message based on the provided parameters.",
+		        parameters = {
+		            @Parameter(name = "message", description = "The message to be returned", required = true, example = "Hello")
+		        }
+		    )
+		    @ApiResponses(value = {
+		        @ApiResponse(responseCode = "200", description = "Successfully retrieved message"),
+		        @ApiResponse(responseCode = "400", description = "Invalid input supplied"),
+		        @ApiResponse(responseCode = "404", description = "Message not found")
+		    })
 	public ResponseEntity<?> test(){
 		log.trace("TRACE");
 		log.debug("DEBUG,");
