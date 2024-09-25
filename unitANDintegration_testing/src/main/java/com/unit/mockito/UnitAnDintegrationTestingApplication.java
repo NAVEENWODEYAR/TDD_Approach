@@ -76,9 +76,9 @@ public class UnitAnDintegrationTestingApplication {
         System.out.println(Arrays.toString(activeProfiles));
         System.out.println("\nUnit Testing,\nIntegration Testing,\nMockito,,");
     }
-    
+
     @Bean
-    public RestTemplate restTemplate() {
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 

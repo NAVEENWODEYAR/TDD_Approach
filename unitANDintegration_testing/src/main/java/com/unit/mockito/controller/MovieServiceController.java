@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.unit.mockito.entity.Movie;
 import com.unit.mockito.service.MovieService;
@@ -14,13 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 /**
  * @author Naveen K Wodeyaar,
@@ -70,7 +62,7 @@ public class MovieServiceController {
 	@GetMapping("/getById/{id}")
 	@ResponseStatus(code = HttpStatus.FOUND)
     @Operation(summary = "Find by movie-Id", description = "Fetches the movie by the provided movie-id,")
-    public ResponseEntity<Object> getMovieById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> getMovieById(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.getByMovieId(id));
     }
 	
@@ -84,7 +76,7 @@ public class MovieServiceController {
 	@PutMapping("/update/{id}")
 //	@ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Update movie", description = "Updates the movie by its id,")
-    public ResponseEntity<Object> updateMovie(@PathVariable("id") Long id,@RequestBody Movie request) {
+    public ResponseEntity<Object> updateMovie(@PathVariable Long id,@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.updateMovie(request, id));
     }
 	
@@ -98,7 +90,7 @@ public class MovieServiceController {
 	@DeleteMapping("/delete/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
-	public ResponseEntity<Void> deleteMovie(@PathVariable("id") Long id) {
+	public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
 	    movieService.deleteMovie(id);  // Assuming the method returns void
 	    return ResponseEntity.noContent().build();  // Return NO_CONTENT status
 	}
