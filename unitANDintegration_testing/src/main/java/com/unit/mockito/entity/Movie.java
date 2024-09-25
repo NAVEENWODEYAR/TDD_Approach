@@ -28,6 +28,8 @@ public class Movie {
 	
 	private LocalDate mReleaseDate;
 
+	public Movie() {}
+	
 	public Movie(Long mId, String mName, String mgenre, LocalDate mReleaseDate) {
 		super();
 		this.mId = mId;

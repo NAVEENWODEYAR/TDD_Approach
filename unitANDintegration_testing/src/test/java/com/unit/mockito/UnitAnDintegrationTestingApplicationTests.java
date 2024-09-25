@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 import org.junit.jupiter.api.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -21,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UnitAnDintegrationTestingApplicationTests {
+	
+	private static final Logger log = LoggerFactory.getLogger(UnitAnDintegrationTestingApplicationTests.class);
 
 	@LocalServerPort
 	private int port;
@@ -73,9 +77,9 @@ class UnitAnDintegrationTestingApplicationTests {
 	@DisplayName("Create Movie Test")
 	void shouldCreateMovieTest() {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 			
 		System.out.println(baseUrl);
 		log.info(baseUrl);
