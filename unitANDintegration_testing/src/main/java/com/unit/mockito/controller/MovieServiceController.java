@@ -54,7 +54,7 @@ public class MovieServiceController {
 	
 	@PostMapping("/add")
 	@ResponseStatus(code = HttpStatus.CREATED)
-    @Operation(summary = "Add new movie", description = "Add a new movie to the system.")
+    @Operation(summary = "Add new movie", description = "Adds a new movie to the system.")
     public ResponseEntity<Object> addMovie(@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.addMovie(request));
     }
@@ -75,7 +75,7 @@ public class MovieServiceController {
 	
 	@PutMapping("/update/{id}")
 //	@ResponseStatus(code = HttpStatus.CREATED)
-    @Operation(summary = "Update movie", description = "Updates the movie by its id,")
+    @Operation(summary = "Update movie", description = "Updates the movie by the provided id,")
     public ResponseEntity<Object> updateMovie(@PathVariable Long id,@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.updateMovie(request, id));
     }
@@ -89,7 +89,7 @@ public class MovieServiceController {
 	
 	@DeleteMapping("/delete/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
+	@Operation(summary = "Delete movie", description = "Removes particular movie from the db,")
 	public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
 	    movieService.deleteMovie(id);  // Assuming the method returns void
 	    return ResponseEntity.noContent().build();  // Return NO_CONTENT status

@@ -23,8 +23,10 @@ public class WeatherService {
 	
 	private static final Logger log = LoggerFactory.getLogger(WeatherService.class);
 
+	// API key,
 	private String apiKey = "190a443a447df5f4dd0c10d2679a3c34";
 	
+	// Weather API,
 	private static final String API = "https://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
 	
 	@Autowired

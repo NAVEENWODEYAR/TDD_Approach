@@ -23,6 +23,7 @@ public class MovieService {
 	private MovieRepository movieRepository;
 	
 	public Movie addMovie(Movie movie) {
+		LOGGER.info("inside addMovie()");
 		return movieRepository.save(movie);
 	}
 	
