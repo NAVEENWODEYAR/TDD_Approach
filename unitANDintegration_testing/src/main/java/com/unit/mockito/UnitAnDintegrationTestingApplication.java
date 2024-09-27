@@ -51,7 +51,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         ),
         @Server(
             url = "http://production-server.com",
-            description = "Production server"
+            description = "Production server",
+            		 variables = {
+            	                @ServerVariable(
+            	                    name = "port",
+            	                    description = "Port number",
+            	                    defaultValue = "7070"
+            	                )
+            	            }
         )
     },
     externalDocs = @ExternalDocumentation(
