@@ -67,24 +67,24 @@ class MovieServiceTest {
 //	@BeforeEach
 	void setUp() throws Exception {
 		movie = new Movie();
-		movie.setMName("VIP");
+		movie.setmName("VIP");
 		movie.setMgenre("Sentiment");
-		movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		movie1 = new Movie();
-		movie1.setMName("VIP2");
+		movie1.setmName("VIP2");
 		movie1.setMgenre("Dramedy");
-		movie1.setMReleaseDate(LocalDate.of(202, 05, 06));
+		movie1.setmReleaseDate(LocalDate.of(202, 05, 06));
 		
 		movie2 = new Movie();
-		movie2.setMName("VIP3");
+		movie2.setmName("VIP3");
 		movie2.setMgenre("Action");
-		movie2.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		movie2.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		movie3 = new Movie();
-		movie3.setMName("VIP4");
+		movie3.setmName("VIP4");
 		movie3.setMgenre("Dramedy");
-		movie3.setMReleaseDate(LocalDate.of(202, 05, 06));
+		movie3.setmReleaseDate(LocalDate.of(202, 05, 06));
 	}
 
 	/**
@@ -103,16 +103,16 @@ class MovieServiceTest {
 	@Test
 	public void addMovie() {
 		Movie movie = new Movie();
-		movie.setMName("VIP");
+		movie.setmName("VIP");
 		movie.setMgenre("Sentiment");
-		movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		when(movieService.addMovie(movie)).thenReturn(movie);
 		when(movieRepository.save(any(Movie.class))).thenReturn(movie);
 		Movie addMovie = movieService.addMovie(movie);
 		
 		assertNotNull(addMovie);
-		assertThat(addMovie.getMName()).isEqualTo("VIP");
+		assertThat(addMovie.getmName()).isEqualTo("VIP");
 	}
 	
 	@Test
@@ -132,14 +132,14 @@ class MovieServiceTest {
 	@DisplayName("/findByName")
 	public void getByMovieId() {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		when(movieRepository.findById(anyLong())).thenReturn(Optional.of(movie));
 		
 		Movie byMovieId = movieService.getByMovieId(1L);
-		assertThat(byMovieId.getMName()).isEqualTo("VIP");
+		assertThat(byMovieId.getmName()).isEqualTo("VIP");
 
 	}
 	
@@ -147,10 +147,10 @@ class MovieServiceTest {
 	@DisplayName("/findByIdWithException,")
 	public void getMoviebyIdException() {
 		Movie movie = new Movie();
-			movie.setMId(1L);
-			movie.setMName("VIP");
+			movie.setmId(1L);
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 			
 		when(movieRepository.findById(1L)).thenReturn(Optional.of(movie));
 		
@@ -164,33 +164,33 @@ class MovieServiceTest {
 	@DisplayName("/Update method,")
 	public void updateMovie() {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
-			movie.setMId(2L);
+			movie.setmName("VIP");
+			movie.setmId(2L);
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		when(movieRepository.findById(2L)).thenReturn(Optional.of(movie));
 		when(movieRepository.save(any(Movie.class))).thenReturn(movie);
 			movie.setMgenre("Dramedy");
-			movie.setMName("VIP2");
+			movie.setmName("VIP2");
 			
 			Movie updateMovie = movieService.updateMovie(movie, 2L);
 		assertNotNull(updateMovie);
 		assertEquals("Dramedy", updateMovie.getMgenre());
-		assertEquals(updateMovie.getMName(),"VIP2");
+		assertEquals(updateMovie.getmName(),"VIP2");
 	}
 	
 	@Test
 	@DisplayName("delteById")
 	public void deleteMovie() {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
-			movie.setMId(2L);
+			movie.setmName("VIP");
+			movie.setmId(2L);
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 			
 		when(movieRepository.findById(anyLong())).thenReturn(Optional.of(movie));
-		System.out.println(movie.getMId()+"\n"+movie.getMName());
+		System.out.println(movie.getmId()+"\n"+movie.getmName());
 		doNothing().when(movieRepository).delete(any(Movie.class));
 		
 		movieService.deleteMovie(2L);

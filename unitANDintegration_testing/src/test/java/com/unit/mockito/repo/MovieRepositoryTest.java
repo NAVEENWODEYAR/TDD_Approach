@@ -34,24 +34,24 @@ public class MovieRepositoryTest{
 	@BeforeEach
 	void init() {
 		movie = new Movie();
-		movie.setMName("VIP");
+		movie.setmName("VIP");
 		movie.setMgenre("Sentiment");
-		movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		movie1 = new Movie();
-		movie1.setMName("VIP2");
+		movie1.setmName("VIP2");
 		movie1.setMgenre("Dramedy");
-		movie1.setMReleaseDate(LocalDate.of(202, 05, 06));
+		movie1.setmReleaseDate(LocalDate.of(202, 05, 06));
 		
 		movie2 = new Movie();
-		movie2.setMName("VIP3");
+		movie2.setmName("VIP3");
 		movie2.setMgenre("Action");
-		movie2.setMReleaseDate(LocalDate.of(2020, 05, 06));
+		movie2.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		movie3 = new Movie();
-		movie3.setMName("VIP4");
+		movie3.setmName("VIP4");
 		movie3.setMgenre("Dramedy");
-		movie3.setMReleaseDate(LocalDate.of(202, 05, 06));
+		movie3.setmReleaseDate(LocalDate.of(202, 05, 06));
 		
 	}
 	
@@ -65,7 +65,7 @@ public class MovieRepositoryTest{
 		
 		// Assert,
 		assertNotNull(mv);
-		assertThat(mv.getMId()).isNotEqualTo(null);;
+		assertThat(mv.getmId()).isNotEqualTo(null);;
 	}
 	
 	@Test
@@ -90,9 +90,9 @@ public class MovieRepositoryTest{
 	void getMovieById() {
 		
 		movieRepository.save(movie);
-		Movie mv = movieRepository.findById(movie.getMId()).get();
+		Movie mv = movieRepository.findById(movie.getmId()).get();
 		assertNotNull(mv);
-		assertEquals("VIP", mv.getMName());
+		assertEquals("VIP", mv.getmName());
 	}
 
 	@Test
@@ -101,9 +101,9 @@ public class MovieRepositoryTest{
 
 		movieRepository.save(movie);
 		
-		Optional<Movie> findById = movieRepository.findById(movie.getMId());
+		Optional<Movie> findById = movieRepository.findById(movie.getmId());
 						findById.get().setMgenre("ACTION");
-						findById.get().setMName("VIP-4");
+						findById.get().setmName("VIP-4");
 						movieRepository.save(findById.get());
 				
 		assertEquals("ACTION", findById.get().getMgenre());
@@ -116,7 +116,7 @@ public class MovieRepositoryTest{
 		
 		movieRepository.save(movie1);
 		
-		movieRepository.deleteById(movie1.getMId());
+		movieRepository.deleteById(movie1.getmId());
 		List<Movie> findAll = movieRepository.findAll();
 		assertEquals(1,findAll.size());
 

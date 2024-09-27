@@ -50,14 +50,14 @@ class UnitAnDintegrationTestingApplicationTests {
 		baseUrl = baseUrl+":"+port+"/api/v1";
 		
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");			
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		Movie movie1 = new Movie();
-			movie1.setMName("VIP2");
+			movie1.setmName("VIP2");
 			movie1.setMgenre("COMEDY");
-			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
+			movie1.setmReleaseDate(LocalDate.of(2022, 05, 06));
 			
 			movie = movieRepository.save(movie);
 			movie1 = movieRepository.save(movie1);
@@ -87,14 +87,14 @@ class UnitAnDintegrationTestingApplicationTests {
 		
 		assertNotNull(newMovie);
 		
-		assertThat(newMovie.getMId()).isNotNull();
+		assertThat(newMovie.getmId()).isNotNull();
 	}
 	
 	@Test
 	@DisplayName("Get Movies Test")
 	void shouldGetMovieListTest() {
 		
-		List newMovie = restTemplate.getForObject(baseUrl+"/list", List.class);
+		List<?> newMovie = restTemplate.getForObject(baseUrl+"/list", List.class);
 		
 		assertNotNull(newMovie);
 		
@@ -107,11 +107,11 @@ class UnitAnDintegrationTestingApplicationTests {
 
 		Movie movie = new Movie();
 
-		Movie existinMovie = restTemplate.getForObject(baseUrl+"/getById/"+movie.getMId(), Movie.class);
+		Movie existinMovie = restTemplate.getForObject(baseUrl+"/getById/"+movie.getmId(), Movie.class);
 	
 		assertNotNull(existinMovie);
 		
-		assertEquals("VIP", existinMovie.getMName());
+		assertEquals("VIP", existinMovie.getmName());
 	}
 	
 	@Test
@@ -135,9 +135,9 @@ class UnitAnDintegrationTestingApplicationTests {
 		
 			movie.setMgenre("DRAMEDY");
 			
-		restTemplate.put(baseUrl+"/update/"+movie.getMId(), movie);
+		restTemplate.put(baseUrl+"/update/"+movie.getmId(), movie);
 		
-		Movie existingMovie = restTemplate.getForObject(baseUrl+"/getById/"+movie.getMId(), Movie.class);
+		Movie existingMovie = restTemplate.getForObject(baseUrl+"/getById/"+movie.getmId(), Movie.class);
 		
 		assertNotNull(existingMovie);
 		

@@ -99,9 +99,9 @@ class MovieServiceControllerTest{
 	@DisplayName("Add movie API test,")
 	void testAddMovie() throws JsonProcessingException, Exception {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 			
 		when(movieService.addMovie(any(Movie.class))).thenReturn(movie);
 		
@@ -117,7 +117,7 @@ class MovieServiceControllerTest{
 								.contentType(MediaType.APPLICATION_JSON)
 								.content(mapper.writeValueAsString(movie)))
 								.andExpect(status().isOk())
-								.andExpect(jsonPath("$.mname", is(movie.getMName())))
+								.andExpect(jsonPath("$.mname", is(movie.getmName())))
 								.andExpectAll(jsonPath("$.mgenre", is(movie.getMgenre())));
 	}
 
@@ -128,16 +128,16 @@ class MovieServiceControllerTest{
 	@Test
 	void testGetMovieById() throws Exception {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMId(1L);
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmId(1L);
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 	
 		when(movieService.getByMovieId(anyLong())).thenReturn((movie));
 		
 		this.mockMvc.perform(get("/api/v1/getById/{id}",1L))
 					.andExpect(status().isOk())
-					.andExpect(jsonPath("$.mname", is(movie.getMName())));
+					.andExpect(jsonPath("$.mname", is(movie.getmName())));
 			
 	}
 
@@ -149,14 +149,14 @@ class MovieServiceControllerTest{
 	@DisplayName("Display movies list")
 	void testGetMovies() throws Exception {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 		
 		Movie movie1 = new Movie();
-			movie1.setMName("VIP2");
+			movie1.setmName("VIP2");
 			movie1.setMgenre("COMEDY");
-			movie1.setMReleaseDate(LocalDate.of(2022, 05, 06));
+			movie1.setmReleaseDate(LocalDate.of(2022, 05, 06));
 			
 		List<Movie> movieList = new ArrayList<>();
 					movieList.add(movie);	
@@ -179,10 +179,10 @@ class MovieServiceControllerTest{
 	@DisplayName("Update Movie")
 	void testUpdateMovie() throws JsonProcessingException, Exception {
 		Movie movie = new Movie();
-			movie.setMName("VIP");
+			movie.setmName("VIP");
 			movie.setMgenre("Sentiment");
-			movie.setMId(1L);
-			movie.setMReleaseDate(LocalDate.of(2020, 05, 06));
+			movie.setmId(1L);
+			movie.setmReleaseDate(LocalDate.of(2020, 05, 06));
 			
 		when(movieService.updateMovie(any(Movie.class), anyLong())).thenReturn(movie);
 		
@@ -190,7 +190,7 @@ class MovieServiceControllerTest{
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(mapper.writeValueAsString(movie)))
 					.andExpect(status().isOk())
-					.andExpect(jsonPath("$.mname", is(movie.getMName())));
+					.andExpect(jsonPath("$.mname", is(movie.getmName())));
 					
 		
 	}
@@ -203,14 +203,14 @@ class MovieServiceControllerTest{
 	@DisplayName("Delete Movie")
 	void testDelteMovie() throws Exception {
 	    Movie movie = new Movie();
-	    movie.setMName("VIP");
+	    movie.setmName("VIP");
 	    movie.setMgenre("Sentiment");
-	    movie.setMId(1L);
-	    movie.setMReleaseDate(LocalDate.of(2020, 5, 6));
+	    movie.setmId(1L);
+	    movie.setmReleaseDate(LocalDate.of(2020, 5, 6));
 
 	    // Stubbing deleteMovie() to do nothing
 //	    doNothing().when(movieService).deleteMovie(anyLong());
-	    when(movieService.deleteMovie(anyLong())).thenReturn("Movie,+"+movie.getMId()+"deleted successfully");
+	    when(movieService.deleteMovie(anyLong())).thenReturn("Movie,+"+movie.getmId()+"deleted successfully");
 	    
 	    // Perform the delete request and expect status NO_CONTENT
 	    this.mockMvc.perform(delete("/api/v1/delete/{id}", 1L))
