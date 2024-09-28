@@ -21,6 +21,16 @@
 		<license />
 	</licenses>
 	<developers>
+	<developer>
+        <id>naveen-kumar</id>
+        <name>Naveen Kumar K</name>
+        <email>naveen.wodeyar@yahoo.com</email>
+        <organization>Silicon Valley</organization>
+        <organizationUrl>https://www.siliconvalley.com</organizationUrl>
+        <roles>
+            <role>Java Developer</role>
+        </roles>
+    </developer>
 		<developer />
 	</developers>
 	<scm>
@@ -92,17 +102,14 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
