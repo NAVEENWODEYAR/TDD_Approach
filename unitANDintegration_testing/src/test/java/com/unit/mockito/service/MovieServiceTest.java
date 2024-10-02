@@ -113,7 +113,7 @@ class MovieServiceTest {
 	@Test
 	@DisplayName("Movies list,")
 	public void movieList(){
-		List<Movie> movieList = new ArrayList();
+		List<Movie> movieList = new ArrayList<Movie>();
 			movieList.add(movie);
 			movieList.add(movie1);
 		

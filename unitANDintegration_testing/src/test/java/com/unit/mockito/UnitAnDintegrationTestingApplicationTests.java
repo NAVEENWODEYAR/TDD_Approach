@@ -36,10 +36,6 @@ class UnitAnDintegrationTestingApplicationTests {
 	@Autowired
 	private MovieRepository movieRepository;
 	
-	private Movie movie;
-	
-	private Movie movie1;
-	
 	@BeforeAll
 	public static void initialize() {
 		restTemplate = new RestTemplate();
@@ -117,8 +113,6 @@ class UnitAnDintegrationTestingApplicationTests {
 	@Test
 	@DisplayName("Delete Movie Test")
 	void shouldDeleteMovieTest() {
-
-		Movie movie = new Movie();
 
 		restTemplate.delete(baseUrl+"/delete/"+1L);
 		

@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
  * @author Naveen K Wodeyaar,
  * @Date 18-Aug-2024
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Current {
 
 		@JsonProperty("observation_time")

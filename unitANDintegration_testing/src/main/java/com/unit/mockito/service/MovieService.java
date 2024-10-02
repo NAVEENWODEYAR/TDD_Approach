@@ -49,7 +49,7 @@ public class MovieService {
 			movieRepository.deleteById(movieId);
 			return "Movie,"+movieId+"deleted successfully";
 		}else {
-			throw new RuntimeException("Movie id not found,,");
+			throw new RuntimeException("Movie with id"+movieId+" not found,,");
 		}
 	}
 	
