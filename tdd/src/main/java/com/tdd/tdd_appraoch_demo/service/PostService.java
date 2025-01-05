@@ -1,9 +1,7 @@
 package com.tdd.tdd_appraoch_demo.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.tdd.tdd_appraoch_demo.dto.Post;
 
 /**

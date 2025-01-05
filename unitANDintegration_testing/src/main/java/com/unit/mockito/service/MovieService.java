@@ -1,12 +1,10 @@
 package com.unit.mockito.service;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unit.mockito.entity.Movie;
 import com.unit.mockito.repo.MovieRepository;
 
@@ -33,7 +31,7 @@ public class MovieService {
 	
 	public Movie getByMovieId(Long movieId) {
 		return movieRepository.findById(movieId).get();
-//		return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
+		//return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
 	}
 	
 	public Movie updateMovie(Movie movie,Long movieId) {

@@ -1,16 +1,26 @@
 package com.unit.mockito;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springdoc.webmvc.ui.SwaggerConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.unit.mockito.controller.MovieServiceController;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -75,11 +85,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 })
 @EnableWebMvc
 @SpringBootApplication
+@EnableScheduling
 public class UnitAnDintegrationTestingApplication {
+	
+	private static final Logger log = LoggerFactory.getLogger(UnitAnDintegrationTestingApplication.class);
+	
+	@Autowired
+	private MovieServiceController movieServiceController;
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(UnitAnDintegrationTestingApplication.class, args);
         String[] activeProfiles = context.getEnvironment().getActiveProfiles();
+        log.info("Application started: {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd EEEE yyyy HH.mm a")));
         System.out.println(Arrays.toString(activeProfiles));
         System.out.println("\nUnit Testing,\nIntegration Testing,\nMockito,,");
     }
@@ -87,6 +104,12 @@ public class UnitAnDintegrationTestingApplication {
     @Bean
     RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+    
+    @Scheduled(cron = "0 0/2 * * * ?")
+    public void cronMethod() {
+        log.info("Cron method: {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd EEEE yyyy HH.mm a")));
+    	movieServiceController.test();
     }
 
 }

@@ -8,18 +8,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.tdd.tdd_appraoch_demo.test.Calculator;
-
-import lombok.extern.slf4j.Slf4j;
-
 
 /**
  * @author Naveen K Wodeyar
  * @date 05-Aug-2024
  */
-@Slf4j
+
 public class ClalculatorTest {
+	
+	private static final Logger log = LoggerFactory.getLogger(ClalculatorTest.class);
 	
 	@BeforeAll
 	public static void init() {
