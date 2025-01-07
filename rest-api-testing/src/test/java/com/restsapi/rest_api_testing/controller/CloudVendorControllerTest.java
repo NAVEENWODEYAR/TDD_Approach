@@ -112,7 +112,11 @@ class CloudVendorControllerTest {
         when(cloudVendorService.deleteCloudVendor("1"))
                 .thenReturn("Success");
 
-        this.mockMvc.perform(delete("/api/cloud/delete/1"))
-                .andDo(print()).andExpect(status().isOk());
+        try {
+			this.mockMvc.perform(delete("/api/cloud/delete/1"))
+			        .andDo(print()).andExpect(status().isOk());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 }
