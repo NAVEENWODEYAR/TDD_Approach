@@ -2,8 +2,7 @@ package com.tdd.tdd_appraoch_demo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,11 +21,10 @@ public class TddAppraochDemoApplication {
 	
 	@Scheduled(cron = "0 0/5 * * * ?")
 	public void cronMethod() {
-		log.info("Using cronExpression");
+		log.info("Using cronExpression for scheduled job: {}",System.currentTimeMillis());
 		LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd EEEE yyyy HH:mm");
         String formattedDate = now.format(formatter);
-        
         log.info(formattedDate);
 	}
 

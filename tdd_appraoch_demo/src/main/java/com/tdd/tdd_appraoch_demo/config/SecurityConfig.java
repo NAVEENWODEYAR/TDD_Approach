@@ -3,7 +3,6 @@ package com.tdd.tdd_appraoch_demo.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,13 +18,12 @@ public class SecurityConfig extends WebSecurityConfiguration {
 
 	 @Bean
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	        http
-	            .authorizeRequests()
-	                .anyRequest().authenticated()
-	                .and()
-	            .formLogin()
-	                .loginPage("/login")
-	                .permitAll();
+         http
+                 .authorizeRequests(requests -> requests
+                         .anyRequest().authenticated())
+                 .formLogin(login -> login
+                         .loginPage("/login")
+                         .permitAll());
 	        return http.build();
 	    }
 	 
