@@ -6,8 +6,16 @@ import io.swagger.v3.oas.annotations.info.*;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.servers.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @OpenAPIDefinition(
@@ -51,20 +59,29 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 	        @Tag(name = "Movie_Service", description = "Testing related to Movie_Service"),
 	        @Tag(name = "Employee", description = "Operations related to employees")}
 	    )
-//	    security = @SecurityRequirement(name = "bearerAuth")  // Apply security globally to all endpoints
-//	)
-//	@SecurityScheme(
-//	    name = "bearerAuth",  // Reference name
-//	    type = SecuritySchemeType.HTTP,  // HTTP type
-//	    scheme = "bearer",  // Bearer token
-//	    bearerFormat = "JWT"  // Optional format for JWT
-//	)
+/*
+ * security = @SecurityRequirement(name = "bearerAuth") // Apply security
+ * globally to all endpoints )
+ * 
+ * @SecurityScheme( name = "bearerAuth", // Reference name type =
+ * SecuritySchemeType.HTTP, // HTTP type scheme = "bearer", // Bearer token
+ * bearerFormat = "JWT" // Optional format for JWT )
+ */
 @EnableWebMvc
 @SpringBootApplication
+@EnableScheduling
 public class RestApiTestingApplication {
+	
+	private static final Logger log = LoggerFactory.getLogger(RestApiTestingApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestApiTestingApplication.class, args);
+		log.warn("Application START_UP");
 		System.out.println("REST\n API");
+	}
+	
+	@Scheduled(cron = "0 0/10 * * * ?")
+	public void cronMethod() {
+		log.error("CRON EXPRESSION: {} ",LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a")));
 	}
 }
