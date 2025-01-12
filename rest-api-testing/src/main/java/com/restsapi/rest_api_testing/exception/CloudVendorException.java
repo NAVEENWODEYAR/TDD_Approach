@@ -1,7 +1,6 @@
 package com.restsapi.rest_api_testing.exception;
 
 import java.util.Objects;
-
 import org.springframework.http.HttpStatus;
 
 public class CloudVendorException {

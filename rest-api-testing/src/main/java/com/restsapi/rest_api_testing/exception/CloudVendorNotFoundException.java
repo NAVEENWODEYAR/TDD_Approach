@@ -2,7 +2,12 @@ package com.restsapi.rest_api_testing.exception;
 
 public class CloudVendorNotFoundException extends RuntimeException{
 
-    public CloudVendorNotFoundException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public CloudVendorNotFoundException(String message) {
         super(message);
     }
 

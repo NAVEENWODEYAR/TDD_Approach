@@ -2,7 +2,6 @@ package com.restsapi.rest_api_testing.service;
 
 import com.restsapi.rest_api_testing.entity.CloudVendor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

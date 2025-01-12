@@ -6,16 +6,12 @@ import io.swagger.v3.oas.annotations.info.*;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.servers.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @OpenAPIDefinition(

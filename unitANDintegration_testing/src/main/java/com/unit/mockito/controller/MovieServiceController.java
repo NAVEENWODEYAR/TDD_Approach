@@ -1,11 +1,10 @@
 package com.unit.mockito.controller;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.unit.mockito.entity.Movie;
 import com.unit.mockito.service.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,13 +12,13 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Naveen K Wodeyaar,
  * @Date 15-Aug-2024
  */
+
 @Tag(name = "Movie_Service_Controller", description = "Operations related to movie,")
-@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class MovieServiceController {
@@ -74,24 +73,28 @@ public class MovieServiceController {
     }
 	
 	@PutMapping("/update/{id}")
-//	@ResponseStatus(code = HttpStatus.CREATED)
+	@ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Update movie", description = "Updates the movie by the provided id,")
     public ResponseEntity<Object> updateMovie(@PathVariable Long id,@RequestBody Movie request) {
         return ResponseEntity.ok(movieService.updateMovie(request, id));
     }
 	
-//	@DeleteMapping("/delete/{id}")
-//	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-//    @Operation(summary = "Delete movie", description = "Removes the provided movie from the db,")
-//    public ResponseEntity<Object> delteMovie(@PathVariable("id") Long id) {
-//        return ResponseEntity.ok(movieService.deleteMovie(id));
-//    }
+	/*
+	 * @DeleteMapping("/delete/{id}")
+	 * 
+	 * @ResponseStatus(code = HttpStatus.NO_CONTENT)
+	 * 
+	 * @Operation(summary = "Delete movie", description =
+	 * "Removes the provided movie from the db,") public ResponseEntity<Object>
+	 * delteMovie(@PathVariable("id") Long id) { return
+	 * ResponseEntity.ok(movieService.deleteMovie(id)); }
+	 */
 	
 	@DeleteMapping("/delete/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@Operation(summary = "Delete movie", description = "Removes particular movie from the db,")
 	public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
-	    movieService.deleteMovie(id);  // Assuming the method returns void
-	    return ResponseEntity.noContent().build();  // Return NO_CONTENT status
+	    movieService.deleteMovie(id);  
+	    return ResponseEntity.noContent().build();  
 	}
 }

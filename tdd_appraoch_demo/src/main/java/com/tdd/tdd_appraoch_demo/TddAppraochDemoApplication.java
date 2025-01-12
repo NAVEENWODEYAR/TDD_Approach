@@ -25,7 +25,7 @@ public class TddAppraochDemoApplication {
 		LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd EEEE yyyy HH:mm");
         String formattedDate = now.format(formatter);
-        log.info(formattedDate);
+        log.error("Cron Method executed",formattedDate);
 	}
 
 }
