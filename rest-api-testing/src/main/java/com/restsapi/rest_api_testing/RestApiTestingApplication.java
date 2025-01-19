@@ -74,10 +74,12 @@ public class RestApiTestingApplication {
 		SpringApplication.run(RestApiTestingApplication.class, args);
 		log.warn("Application START_UP");
 		System.out.println("REST\n API");
+		log.trace(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a")));
 	}
 	
 	@Scheduled(cron = "0 0/10 * * * ?")
 	public void cronMethod() {
-		log.error("CRON EXPRESSION: {} ",LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a")));
+		System.out.println("##/nWelcome/n##");
+		log.error("Method executed at {} ",LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a")));
 	}
 }

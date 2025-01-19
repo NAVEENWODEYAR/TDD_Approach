@@ -21,7 +21,7 @@ public class TddAppraochDemoApplication {
 	
 	@Scheduled(cron = "0 0/5 * * * ?")
 	public void cronMethod() {
-		log.info("Using cronExpression for scheduled job: {}",System.currentTimeMillis());
+		log.info("Using cronExpression for scheduled job: {}",LocalDateTime.now());
 		LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd EEEE yyyy HH:mm");
         String formattedDate = now.format(formatter);

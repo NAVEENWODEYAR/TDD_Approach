@@ -9,16 +9,25 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Tag(name = "CloudVendorController",description = "The Cloud Vendor Controller,,")
 @RestController
 @RequestMapping("/api/cloud")
 public class CloudVendorController {
+	
+	private static final Logger log = LoggerFactory.getLogger(CloudVendorController.class);
 
     private CloudVendorService cloudVendorService;
 
@@ -87,5 +96,26 @@ public class CloudVendorController {
     public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
         cloudVendorService.deleteCloudVendor(vendorId);
         return "Cloud Vendor Deleted Successfully";
+    }
+    
+    // Method executed when the application starts
+    @PostConstruct
+    public void onAppStart() {
+        LocalDateTime startTime = LocalDateTime.now();
+        log.info("Application started at: {}", startTime); // Log application start time
+        log.debug("Debug level log - Application started at: {}", startTime); // Debug message
+    }
+    
+    // Method executed when the application shuts down
+    @PreDestroy
+    public void onAppShutdown() {
+        LocalDateTime shutdownTime = LocalDateTime.now();
+        log.info("Application is shutting down at: {}", shutdownTime); // Log application shutdown time
+        log.warn("Warning - Application shutdown initiated at: {}", shutdownTime); // Warning message
+    }
+    
+    public void onApplicationEvent(ContextClosedEvent event) {
+        LocalDateTime shutdownTime = LocalDateTime.now();
+        log.error("Error log - Application context is being closed at: {}", shutdownTime); // Error message
     }
 }
