@@ -43,11 +43,12 @@ public class MovieServiceController {
 		        @ApiResponse(responseCode = "404", description = "Message not found")
 		    })
 	public ResponseEntity<?> test(){
-		log.trace("TRACE");
-		log.debug("DEBUG,");
-		log.info("INFO,");
-		log.warn("WARN,");
-		log.error("ERROR,");
+		log.info("Logging Levels");
+		log.trace("\nTRACE");
+		log.debug("\nDEBUG,");
+		log.info("\nINFO,");
+		log.warn("\nWARN,");
+		log.error("\nERROR,");
 		return  ResponseEntity.ok("Welcome to the Movie_Controller!,");
 	}
 	
