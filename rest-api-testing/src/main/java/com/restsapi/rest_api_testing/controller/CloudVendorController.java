@@ -2,25 +2,14 @@ package com.restsapi.rest_api_testing.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.restsapi.rest_api_testing.entity.CloudVendor;
 import com.restsapi.rest_api_testing.response.ResponseHandler;
 import com.restsapi.rest_api_testing.service.CloudVendorService;
-
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -50,7 +39,8 @@ public class CloudVendorController {
     })
     @GetMapping
     public ResponseEntity<?> test(){
-        return ResponseEntity.status(HttpStatus.OK).body("Welcome to the cloud vendor");
+    	log.info("test endPoint");
+    	return ResponseEntity.status(HttpStatus.OK).body("Welcome to the cloud vendor");
     }
 
     // Read Specific Cloud Vendor Details from DB
@@ -74,6 +64,7 @@ public class CloudVendorController {
     })
     @GetMapping("/list")
     public List<CloudVendor> getAllCloudVendorDetails() {
+    	log.warn("listing API");
         return cloudVendorService.getAllCloudVendors();
     }
 
@@ -85,6 +76,7 @@ public class CloudVendorController {
     @PostMapping("/add")
     public String createCloudVendorDetails(@RequestBody @ApiParam(value = "CloudVendor details",readOnly = true) CloudVendor cloudVendor) {
         cloudVendorService.createCloudVendor(cloudVendor);
+        log.info("Adding new entry");
         return "Cloud Vendor Created Successfully";
     }
 
@@ -103,6 +95,7 @@ public class CloudVendorController {
     @DeleteMapping("/delete/{vendorId}")
     public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
         cloudVendorService.deleteCloudVendor(vendorId);
+        log.warn("Removes Cloud vendor,");
         return "Cloud Vendor Deleted Successfully";
     }
     

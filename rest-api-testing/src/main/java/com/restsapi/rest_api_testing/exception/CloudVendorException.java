@@ -3,6 +3,11 @@ package com.restsapi.rest_api_testing.exception;
 import java.util.Objects;
 import org.springframework.http.HttpStatus;
 
+/**
+ * @author Naveen K Wodeyaar,
+ * @Date 18-Aug-2024
+ */
+
 public class CloudVendorException {
 
 	private String message;
