@@ -6,9 +6,16 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.tdd.tdd_appraoch_demo.entity.Employee;
+import com.tdd.tdd_appraoch_demo.repo.EmployeeRepo;
 
 /**
  * @author Naveen K Wodeyar
@@ -16,13 +23,28 @@ import org.mockito.junit.jupiter.MockitoExtension;
  */
 
 @ExtendWith(MockitoExtension.class)
-class EmployeeServiceImplTest {
+public class EmployeeServiceImplTest {
+	
+	@Mock
+	EmployeeRepo employeeRepo;
+	
+	@InjectMocks
+	private EmployeeServiceImpl employeeServiceImpl;
+	
+	private static Employee employee;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		System.out.println("EmployeeServiceImplTest started");
+		employee.setEmpName("Test");
+		employee.setEmpAddress("Test_Address");
+		employee.setEmpDept("Test_Dept");
+		employee.setEmpDesignation("Test_Design");
+		employee.setEmpMail("Test_Mail");
+		employee.setEmpSal("Test_Sal");
 	}
 
 	/**
@@ -30,6 +52,7 @@ class EmployeeServiceImplTest {
 	 */
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		System.out.println("EmployeeServiceImplTest completed");
 	}
 
 	/**
@@ -50,5 +73,20 @@ class EmployeeServiceImplTest {
 	void test() {
 		fail("Not yet implemented");
 	}
-
+	
+	
+	@Test
+	@DisplayName("AddingEmployee")
+	public void addEmployeeTest() {
+	Mockito.when(employeeServiceImpl.addEmployee(employee)).thenReturn(employee);
+	assertEquals(employee.getEmpName(), employee.getEmpName());
+	assertNotNull(employee);
+	}
+	
+	@Test
+	@DisplayName("FindByID")
+	public void getEmployee() throws Exception {
+	Mockito.when(employeeServiceImpl.getEmployee(1)).thenReturn(employee);
+	
+	}
 }
