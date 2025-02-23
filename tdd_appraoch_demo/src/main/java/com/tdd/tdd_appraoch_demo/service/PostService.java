@@ -3,8 +3,9 @@ package com.tdd.tdd_appraoch_demo.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.tdd.tdd_appraoch_demo.controller.repo.PostRepository;
+
 import com.tdd.tdd_appraoch_demo.dto.Post;
+import com.tdd.tdd_appraoch_demo.repo.PostRepository;
 
 /**
  * @author Naveen K Wodeyar

@@ -16,8 +16,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.tdd.tdd_appraoch_demo.controller.repo.PostRepository;
+
 import com.tdd.tdd_appraoch_demo.dto.Post;
+import com.tdd.tdd_appraoch_demo.repo.PostRepository;
 import com.tdd.tdd_appraoch_demo.service.PostService;
 
 public class PostServiceTest {
