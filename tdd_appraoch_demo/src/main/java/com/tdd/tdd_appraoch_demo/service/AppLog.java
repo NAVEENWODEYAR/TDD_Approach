@@ -12,6 +12,7 @@ import jakarta.annotation.*;
  * @author Naveen K Wodeyar
  * @date 09-Jan-2025
  */
+
 @Component
 public class AppLog {
 	
