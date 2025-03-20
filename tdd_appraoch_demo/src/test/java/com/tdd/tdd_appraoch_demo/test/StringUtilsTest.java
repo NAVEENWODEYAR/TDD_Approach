@@ -1,7 +1,3 @@
-/**
- * @author Naveen K Wodeyar
- * @date 19-Mar-2025
- */
 package com.tdd.tdd_appraoch_demo.test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,8 +9,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
+ * @author Naveen K Wodeyar
+ * @date 19-Mar-2025
  */
+
 class StringUtilsTest {
 
 	/**
