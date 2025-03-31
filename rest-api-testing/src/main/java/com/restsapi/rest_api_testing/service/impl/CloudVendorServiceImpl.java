@@ -4,6 +4,9 @@ import com.restsapi.rest_api_testing.entity.CloudVendor;
 import com.restsapi.rest_api_testing.exception.CloudVendorNotFoundException;
 import com.restsapi.rest_api_testing.repo.CloudVendorRepository;
 import com.restsapi.rest_api_testing.service.CloudVendorService;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +21,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
+    @Transactional
     public String createCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
@@ -25,6 +29,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
+    @Transactional
     public String updateCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
@@ -32,6 +37,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
+    @Transactional
     public String deleteCloudVendor(String cloudVendorId) {
         // More Business Logic
         cloudVendorRepository.deleteById(cloudVendorId);
@@ -39,6 +45,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
+    @Transactional
     public CloudVendor getCloudVendor(String cloudVendorId) {
         // More Business Logic
         if (cloudVendorRepository.findById(cloudVendorId).isEmpty())
@@ -47,12 +54,14 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
+    @Transactional
     public List<CloudVendor> getAllCloudVendors() {
         // More Business Logic
         return cloudVendorRepository.findAll();
     }
 
     @Override
+    @Transactional
     public List<CloudVendor> getByVendorName(String vendorName) {
         return cloudVendorRepository.findByVendorName(vendorName);
     }
