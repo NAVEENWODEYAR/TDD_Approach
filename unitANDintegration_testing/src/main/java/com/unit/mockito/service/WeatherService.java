@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author Naveen K Wodeyaar,
  * @Date 18-Aug-2024
  */
-@Slf4j
 @Service
 public class WeatherService {
 	
@@ -29,12 +28,17 @@ public class WeatherService {
 	private RestTemplate restTemplate;
 	
 	public Object getWeather(String city) {
-		String finalUrl = API.replace("CITY", city).replace("API_KEY", apiKey);
-		log.debug(finalUrl);
-		log.warn(city);
-		ResponseEntity<Object> weatherReport = restTemplate.exchange(finalUrl, HttpMethod.GET,null,Object.class);
-		Object weatherResponse = weatherReport.getBody();
-		return weatherResponse;
+		try {
+			String finalUrl = API.replace("CITY", city).replace("API_KEY", apiKey);
+			log.debug(finalUrl);
+			log.warn(city);
+			ResponseEntity<Object> weatherReport = restTemplate.exchange(finalUrl, HttpMethod.GET,null,Object.class);
+			Object weatherResponse = weatherReport.getBody();
+			return weatherResponse;
+		} catch (Exception e) {
+			log.error("Exception occured: {}",e.getLocalizedMessage());
+		}
+		return null;
 	}
 	
 }

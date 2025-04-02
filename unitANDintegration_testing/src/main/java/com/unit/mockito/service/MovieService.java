@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.unit.mockito.entity.Movie;
 import com.unit.mockito.repo.MovieRepository;
 
+import jakarta.transaction.Transactional;
+
 /**
  * @author Naveen K Wodeyaar,
  * @Date 12-Aug-2024
@@ -19,21 +21,23 @@ public class MovieService {
 
 	@Autowired
 	private MovieRepository movieRepository;
-	
+	@Transactional
 	public Movie addMovie(Movie movie) {
 		LOGGER.info("inside addMovie()");
 		return movieRepository.save(movie);
 	}
-	
+	@Transactional
 	public List<Movie> movieList(){
 		return movieRepository.findAll();
 	}
 	
+	@Transactional
 	public Movie getByMovieId(Long movieId) {
 		return movieRepository.findById(movieId).get();
 		//return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
 	}
 	
+	@Transactional
 	public Movie updateMovie(Movie movie,Long movieId) {
 		Movie movie2 = movieRepository.findById(movieId).get();
 				movie2.setmName(movie.getmName());
@@ -42,6 +46,7 @@ public class MovieService {
 				return movieRepository.save(movie2);
 	}
 	
+	@Transactional
 	public String deleteMovie(Long movieId) {
 		if(movieRepository.existsById(movieId)) {
 			movieRepository.deleteById(movieId);
