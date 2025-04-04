@@ -14,6 +14,7 @@ import jakarta.transaction.Transactional;
  * @author Naveen K Wodeyaar,
  * @Date 12-Aug-2024
  */
+
 @Service
 public class MovieService {
 	
@@ -33,8 +34,8 @@ public class MovieService {
 	
 	@Transactional
 	public Movie getByMovieId(Long movieId) {
-		return movieRepository.findById(movieId).get();
-		//return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
+		//return movieRepository.findById(movieId).get();
+		return movieRepository.findById(movieId).orElseThrow(()->new RuntimeException("Movie with the given id not found,"));
 	}
 	
 	@Transactional
@@ -42,7 +43,6 @@ public class MovieService {
 		Movie movie2 = movieRepository.findById(movieId).get();
 				movie2.setmName(movie.getmName());
 				movie2.setMgenre(movie.getMgenre());
-				
 				return movieRepository.save(movie2);
 	}
 	

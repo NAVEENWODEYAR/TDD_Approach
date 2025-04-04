@@ -18,6 +18,7 @@ import com.unit.mockito.controller.MovieServiceController;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -85,6 +86,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @EnableWebMvc
 @SpringBootApplication
 @EnableScheduling
+@EnableRetry
 public class UnitAnDintegrationTestingApplication {
 	
 	private static final Logger log = LoggerFactory.getLogger(UnitAnDintegrationTestingApplication.class);

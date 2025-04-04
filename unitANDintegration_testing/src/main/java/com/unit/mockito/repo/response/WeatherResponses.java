@@ -10,13 +10,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Naveen K Wodeyaar,
  * @Date 18-Aug-2024
  */
+
 @JsonIgnoreProperties
 @JsonInclude
 public class WeatherResponses {
 
 	    private Current current;
 
-	    public class Current {
+	    	public class Current {
 	    	
 	        private int temperature;
 	        
