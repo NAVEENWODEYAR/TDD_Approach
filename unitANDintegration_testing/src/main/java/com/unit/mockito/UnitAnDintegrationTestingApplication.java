@@ -24,11 +24,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.info.License;
-import io.swagger.v3.oas.annotations.servers.Server;
-import io.swagger.v3.oas.annotations.servers.ServerVariable;
+import io.swagger.v3.oas.annotations.info.*;
+import io.swagger.v3.oas.annotations.servers.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @OpenAPIDefinition(
@@ -100,6 +97,7 @@ public class UnitAnDintegrationTestingApplication {
         log.info("Application started: {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd EEEE yyyy HH.mm a")));
         System.out.println(Arrays.toString(activeProfiles));
         System.out.println("\nUnit Testing,\nIntegration Testing,\nMockito,,");
+        log.info("Application running: {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd EEEE yyyy HH.mm a")));
     }
 
     @Bean
