@@ -4,13 +4,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.tdd.tdd_appraoch_demo.dto.Post;
 
+import jakarta.transaction.Transactional;
+
 /**
  * @author Naveen K Wodeyar
  * @date 04-Aug-2024
  */
+
 @Service
 public class PostService {
 	
+	@Transactional
 	public List<Post> findAll(){
 		return  List.of(new Post(1,1,"Post-1","First Post"),new Post(1,1,"Post-2","Second Post"));
 	}

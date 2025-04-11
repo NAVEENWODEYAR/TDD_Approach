@@ -27,13 +27,11 @@ public class TestController {
 
     @GetMapping("/external")
     public String callExternalApi() {
-        String url = "https://api.chucknorris.io/jokes/random"; // Example external API
+        String url = "https://api.chucknorris.io/jokes/random"; 
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-
         log.info("External API response: {}", response.getBody());
-
         return response.getBody();
     }
 }
