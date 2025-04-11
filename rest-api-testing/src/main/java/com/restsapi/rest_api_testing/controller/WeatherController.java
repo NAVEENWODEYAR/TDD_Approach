@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Naveen K Wodeyaar,
  * @Date 18-Aug-2024
  */
+
 @RestController
 @RequestMapping("/api/v1/weather")
 public class WeatherController {

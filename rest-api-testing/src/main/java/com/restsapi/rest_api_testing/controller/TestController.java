@@ -1,13 +1,12 @@
 package com.restsapi.rest_api_testing.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author Naveen Wodeyar
@@ -18,12 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/")
 public class TestController {
-	
-	private static final Logger log = LoggerFactory.getLogger(TestController.class);
-	
-	@GetMapping
-	public String test() {
-	    return java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm ddMMMMyyyy"));
-	}
 
+    private static final Logger log = LoggerFactory.getLogger(TestController.class);
+
+    @GetMapping
+    public String test() {
+        return java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm ddMMMMyyyy"));
+    }
+
+    @GetMapping("/external")
+    public String callExternalApi() {
+        String url = "https://api.chucknorris.io/jokes/random"; // Example external API
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        log.info("External API response: {}", response.getBody());
+
+        return response.getBody();
+    }
 }
