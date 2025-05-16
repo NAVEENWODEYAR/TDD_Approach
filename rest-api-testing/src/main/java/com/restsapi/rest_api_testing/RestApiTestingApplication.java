@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import org.slf4j.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -66,6 +67,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @SpringBootApplication
 @EnableScheduling
+@EnableCaching
 public class RestApiTestingApplication {
 	
 	private static final Logger log = LoggerFactory.getLogger(RestApiTestingApplication.class);
