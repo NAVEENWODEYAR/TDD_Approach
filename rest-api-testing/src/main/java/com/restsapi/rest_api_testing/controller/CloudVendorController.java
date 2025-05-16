@@ -119,4 +119,11 @@ public class CloudVendorController {
         LocalDateTime shutdownTime = LocalDateTime.now();
         log.error("Error log - Application context is being closed at: {}", shutdownTime); // Error message
     }
+    
+    // Clear all user cache
+    @PostMapping("/evict/users")
+    public ResponseEntity<String> evictAllUserCache() {
+    	cloudVendorService.evictAllUserCache();
+        return ResponseEntity.ok("All user cache cleared");
+    }
 }
