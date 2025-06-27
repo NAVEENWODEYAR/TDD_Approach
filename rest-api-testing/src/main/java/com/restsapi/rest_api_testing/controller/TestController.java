@@ -22,11 +22,14 @@ public class TestController {
 
     @GetMapping
     public String test() {
-        return java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm ddMMMMyyyy"));
+    	log.info("test method,");
+    	String format = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm ddMMMMyyyy"));
+    	return format;		
     }
 
     @GetMapping("/external")
     public String callExternalApi() {
+        log.info("callExternalApi() started");
         String url = "https://api.chucknorris.io/jokes/random"; 
         RestTemplate restTemplate = new RestTemplate();
 
