@@ -16,6 +16,7 @@ class ReturnExampleTest {
 
     @Test
     void testMainMethodStopsAtThree() {
+    	
         // Capture System.out
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
