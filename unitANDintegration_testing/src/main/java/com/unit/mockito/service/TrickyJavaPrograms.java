@@ -1,7 +1,5 @@
 package com.unit.mockito.service;
 
-import java.util.*;
-
 /**
  * @author Naveen K Wodeyaar,
  * @Date 20-May-2026
@@ -77,6 +75,7 @@ public class TrickyJavaPrograms {
 
         try {
             int result = 10 / 0;
+            System.out.println(result);
         }
         catch (ArithmeticException e) {
             System.out.println("Exception Caught");
@@ -89,6 +88,7 @@ public class TrickyJavaPrograms {
         System.out.println();
     }
 
+    
     // ==========================================================
     // 4. INTEGER CACHING TRICK
     // ==========================================================
