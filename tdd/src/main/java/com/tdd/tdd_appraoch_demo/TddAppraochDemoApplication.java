@@ -14,7 +14,7 @@ public class TddAppraochDemoApplication {
 	private static final Logger log = LoggerFactory.getLogger(TddAppraochDemoApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(TddAppraochDemoApplication.class, args);
+		SpringApplication.run(Test Driven AppraochDemoApplication.class, args);
 		System.out.println("Test\n Driven\n Development");
 		log.warn("TddAppraochDemoApplication Started,,");
 	}
