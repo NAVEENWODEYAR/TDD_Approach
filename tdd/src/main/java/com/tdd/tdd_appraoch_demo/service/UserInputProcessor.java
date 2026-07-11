@@ -30,7 +30,7 @@ public class UserInputProcessor {
     // Use BufferedReader to read a number and print square
     public void readWithBufferedReader() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Enter a number: ");
+        System.out.print("Enter a number to check square root: ");
         int num = Integer.parseInt(reader.readLine());
         System.out.println("Square is: " + squareNumber(num));
     }
