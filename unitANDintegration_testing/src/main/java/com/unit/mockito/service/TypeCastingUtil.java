@@ -56,6 +56,7 @@ public class TypeCastingUtil {
     // ---------------- INTERVIEW STYLE TEST CASES ----------------
     public static void main(String[] args) {
 
+System.out.println("Type casting demo");
         System.out.println("=== WIDENING TYPE CASTING ===");
 
         byte b = 10;
