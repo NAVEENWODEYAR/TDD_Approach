@@ -52,7 +52,7 @@ public class WeatherService {
 
         } catch (Exception e) {
             // This exception will be retried as per the @Retryable annotation
-            log.error("Failed to fetch weather data for city {}: {}", city, e.getMessage());
+            log.error("Failed to fetch weather data for the requested city {}: {}", city, e.getMessage());
             throw e;  // Re-throw the exception to trigger retry
         }
     }
