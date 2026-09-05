@@ -124,6 +124,6 @@ public class CloudVendorController {
     @PostMapping("/evict/users")
     public ResponseEntity<String> evictAllUserCache() {
     	cloudVendorService.evictAllUserCache();
-        return ResponseEntity.ok("All user cache cleared");
+        return ResponseEntity.ok("All user record cache cleared");
     }
 }
