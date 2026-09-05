@@ -35,7 +35,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     public String updateCloudVendor(CloudVendor cloudVendor) {
         // More Business Logic
         cloudVendorRepository.save(cloudVendor);
-        return "cloudVendor successfully updated,";
+        return "cloudVendor record successfully updated,";
     }
 
     @Override
@@ -71,7 +71,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     
     @CacheEvict(value = "cloudVendor", allEntries = true)
     public void evictAllUserCache() {
-        System.out.println("Cleared entire cloudVendor cache");
+        System.out.println("Cleared entire cloudVendor record cache");
     }
 
 }
