@@ -96,7 +96,7 @@ public class PostController {
 		    })
 	@GetMapping("/findById/{id}")
 	public Post getById(@PathVariable int id) {
-		 log.info("Inside the test getbyId,");
+		 log.info("Inside the test getbyId API,");
 		return postService.findById(id);
 	}
 }
