@@ -18,9 +18,11 @@ public class BreakExample {
      * @param breakValue The value at which the loop should break
      * @return A list of integers processed before the break
      */
-    public static List<Integer> getNumbersBeforeBreak(int limit, int breakValue) {
+    public static List<Integer> getNumbersBeforeBreak(
+    		int limit, 
+    		int breakValue) {
+    	
         List<Integer> result = new ArrayList<>();
-
         for (int i = 1; i <= limit; i++) {
             if (i == breakValue) {
                 break; // stops the loop when i equals breakValue
@@ -40,7 +42,8 @@ public class BreakExample {
             new TestCase(3, 10, List.of(1, 2, 3)),      // Example 3: No break occurs
             new TestCase(1, 1, List.of()),              // Edge Case: Limit 1, break 1
             new TestCase(4, 5, List.of(1, 2, 3, 4)),    // Edge Case: Break out of bounds
-            new TestCase(6, 4, List.of(1, 2, 3))        // Standard mid-range break
+            new TestCase(6, 4, List.of(1, 2, 3)),        // Standard mid-range break
+            new TestCase(6, 4, List.of())  
         };
 
         int passedCount = 0;
