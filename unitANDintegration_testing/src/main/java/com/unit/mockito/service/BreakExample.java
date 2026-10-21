@@ -43,7 +43,10 @@ public class BreakExample {
             new TestCase(1, 1, List.of()),              // Edge Case: Limit 1, break 1
             new TestCase(4, 5, List.of(1, 2, 3, 4)),    // Edge Case: Break out of bounds
             new TestCase(6, 4, List.of(1, 2, 3)),        // Standard mid-range break
-            new TestCase(6, 4, List.of())  
+            new TestCase(6, 4, List.of())  ,
+            new TestCase(6, 4, List.of(1,1,1)),  
+            new TestCase(6, 4, List.of(0,0,0))  
+
         };
 
         int passedCount = 0;
