@@ -33,8 +33,10 @@ public class BreakExample {
         return result;
     }
 
+    
     // --- LeetCode-Style Test Runner (main method) ---
     public static void main(String[] args) {
+    	
         // Define your test cases (Inputs vs Expected Outputs)
         TestCase[] testCases = {
             new TestCase(5, 3, List.of(1, 2)),          // Example 1: Standard break
@@ -43,7 +45,13 @@ public class BreakExample {
             new TestCase(1, 1, List.of()),              // Edge Case: Limit 1, break 1
             new TestCase(4, 5, List.of(1, 2, 3, 4)),    // Edge Case: Break out of bounds
             new TestCase(6, 4, List.of(1, 2, 3)),        // Standard mid-range break
-            new TestCase(6, 4, List.of())  
+            new TestCase(6, 4, List.of())  ,
+            new TestCase(6, 4, List.of(1,1,1)),  
+            new TestCase(6, 4, List.of(0,0,0)),
+            new TestCase(6, 4, List.of(null,null,null)),  
+            new TestCase(0, 0, new ArrayList<>())
+
+
         };
 
         int passedCount = 0;
@@ -74,6 +82,7 @@ public class BreakExample {
 
         System.out.println("\nResults Summary: " + passedCount + " / " + testCases.length + " test cases passed.");
     }
+    
 
     /**
      * Helper structure to mimic LeetCode's test case inputs and expected outputs.
@@ -83,7 +92,11 @@ public class BreakExample {
         int breakValue;
         List<Integer> expected;
 
-        public TestCase(int limit, int breakValue, List<Integer> expected) {
+        public TestCase(
+        		int limit,
+        		int breakValue, 
+        		List<Integer> expected) {
+        	
             this.limit = limit;
             this.breakValue = breakValue;
             this.expected = expected;
